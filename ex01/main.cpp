@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.tpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 14:51:33 by dabdygal          #+#    #+#             */
-/*   Updated: 2024/08/05 13:41:10 by dabdygal         ###   ########.fr       */
+/*   Created: 2024/08/07 10:09:11 by dabdygal          #+#    #+#             */
+/*   Updated: 2024/08/07 13:18:56 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef _EASYFIND_TPP_
-	#define _EASYFIND_TPP_
+#include <cstdlib>
+#include "Span.hpp"
 
-	#include <algorithm>
-	
-	template <typename T>
-	typename T::iterator	easyfind(T &container, int val)
-	{
-		return std::find(container.begin(), container.end(), val);
-	}
-#endif
+int	main()
+{
+	Span a(10);
+	int	arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+	a.addNumber(arr, arr + 10);
+	return EXIT_SUCCESS;
+}
