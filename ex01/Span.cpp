@@ -6,11 +6,12 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:03:51 by dabdygal          #+#    #+#             */
-/*   Updated: 2024/08/07 13:58:08 by dabdygal         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:58:05 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algorithm>
+#include <iostream>
 #include "Span.hpp"
 
 // Constructors
@@ -62,19 +63,51 @@ const char	*Span::SpanNotEnoughElements::what( void ) const throw()
 	return "Span has not enough elements";
 }
 
+// Helpers
+unsigned int	calcSpan(int a, int b)
+{
+	if (b >= a)
+		return b - a;
+	return a - b;
+}
+
+void	printList(const std::list<int> &lst)
+{
+	std::list<int>::const_iterator	it = lst.begin();
+	while (it != lst.end())
+	{
+		std::cout << *it << ", ";
+		it++;
+	}
+	std::cout << std::endl;
+}
+
+// Actions
 void	Span::addNumber(int value)
 {
 	if (_currentSize >= _capacity)
 		throw SpanFullException();
 	*_currentEnd = value;
 	_currentSize++;
-	_currentEnd++;
+	std::advance(_currentEnd, 1);
 }
 
-int	Span::shortestSpan( void ) const
+unsigned int	Span::shortestSpan( void ) const
 {
 	if (_currentSize < 2)
 		throw SpanNotEnoughElements();
-	std::list<int>	tmp(_container);
+	std::list<int>				tmp(_container.begin(), static_cast<std::list<int>::const_iterator>(_currentEnd));
+	std::list<unsigned int>		spansList(_currentSize - 1);
 	tmp.sort();
+	std::transform(tmp.begin(), tmp.end(), ++tmp.begin(), spansList.begin(), calcSpan);
+	return *std::min_element(spansList.begin(), spansList.end());
+}
+
+unsigned int	Span::longestSpan( void ) const
+{
+	if (_currentSize < 2)
+		throw SpanNotEnoughElements();
+	std::list<int>	tmp(_container.begin(), static_cast<std::list<int>::const_iterator>(_currentEnd));
+	tmp.sort();
+	return *(--tmp.end()) - *tmp.begin();
 }

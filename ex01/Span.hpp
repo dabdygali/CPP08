@@ -6,7 +6,7 @@
 /*   By: dabdygal <dabdygal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:43:27 by dabdygal          #+#    #+#             */
-/*   Updated: 2024/08/07 13:28:25 by dabdygal         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:44:23 by dabdygal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@
 			};
 
 			// Actions
-			void	addNumber(int value);
+			void			addNumber(int value);
 			template <typename InputIterator>
-			void	addNumber(InputIterator first, InputIterator last);
-			int		shortestSpan( void ) const;
-			int		longestSpan( void ) const;
+			void			addNumber(InputIterator first, InputIterator last);
+			unsigned int	shortestSpan( void ) const;
+			unsigned int	longestSpan( void ) const;
 	};
 
 	template <typename InputIterator>
